@@ -1,0 +1,31 @@
+.form{
+  font-family: 'Courier New', Courier, monospace;
+
+  height: 30px;
+  width: 50px;
+  display: flex;
+  position: absolute;
+  margin-left: 7vw;
+  top: 250px
+  
+}
+
+.submit{
+  border-radius: 0.5rem;
+  box-shadow: none;
+  border-style: none;
+  background-color: #09000eb1;
+  color: white;
+}
+
+.submit:hover{background-color: #dc97ffb1;
+cursor: pointer;}
+
+#input, #inputwo{
+  border-radius: 0.5rem;
+  border-style: none;
+  background-color: #000000dd;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
