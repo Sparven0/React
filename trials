@@ -1,1 +1,340 @@
+/*APP.JSX*/
+
+import { useState } from 'react'
+import './App.css'
+import Home from './components/Home'
+import Prop from './components/prop'
+import { Route, Routes } from 'react-router-dom'
+import Navigation from './components/Navigation'
+import Features from './components/features'
+import About from './components/pages/about'
+
+
+function App() {
+ 
+
+  return (
+    <>
+      <div className='app'>
+      <Navigation />
+       <Routes>
+       <Route path='/' element={<Home />} />
+       <Route path='/About' element={<About />} />
+       <Route path='/Features' element={<Features />} />
+       </Routes>
+       
+       <div className="container">
+
+
+       <Prop 
+        image ='/public/photo3.png'
+       name="ReactProps"
+       describe="Using properties"
+       price="$450"/>
+
+       <Prop 
+       image ='/public/photo2.png'
+       name="Props are gr8"
+       describe="Less work, more gain"
+       price="$455"
+       />
+
+        <Prop 
+         image ='/public/photo1.png'
+       name="Storefronts etc"
+       describe="With layout plugins"
+       price="$460"/>
+
+<Prop 
+        image ='/public/photo3.png'
+       name="Gr8 fun "
+       describe="Versitile"
+       price="$465"/>
+
+ 
+
+
+      </div>
+      </div>
+      
+    </>
+  )
+}
+
+export default App
+
+
+
+/*ABOUT.JSX*/
+
+import React from 'react'
+import Navigation from '../Navigation'
+
+function about() {
+  return (
+    <div className='about'>
+      <h1>About page!</h1>
+      <p>Next step: figure out how to make the axios and form component work in react or write OnClick-function to hide Login on all other pages.</p>
+      
+    </div>
+  )
+}
+
+export default about
+
+/*MAIN.JSX*/
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import { BrowserRouter } from 'react-router-dom'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+  </StrictMode>,
+)
+
+/*NAVIGATION.JSX*/
+
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+function Navigation() {
+  return (
+    
+      <nav className='nav'>
+        <ul>
+            <li>
+                <Link to ="/" id="link">Home</Link>
+            </li>
+            <li>
+                <Link to ="/About" id="link">About</Link>
+            </li>
+            <li>
+                <Link to ="/Features" id="link">Features</Link>
+            </li>
+        </ul>
+      </nav>
+      
+    
+  )
+}
+
+export default Navigation
+
+
+/*PROP.JSX*/
+
+import React from 'react'
+
+
+function prop(props) {
+  return (
+  
+        <div className='productbox'>
+        <img src={props.image} className='img'/>
+      <h3>{props.name}</h3>
+      <h4>{props.describe}</h4>
+      <p>{props.price}</p>
+      
+      
+      </div>
+  
+   
+  )
+
+}
+
+
+
+
+export default prop
+
+/*API.JS*/
+
+function getValue(){
+    let inputone = document.getElementById('input');
+    let inputtwo = document.getElementById('inputwo');
+
+    axios.post('https://reqres.in/api/login',{
+        email: inputone,
+        password: inputtwo 
+    }).then(response => {
+        console.log(response)
+    })
+}
+
+/*APP.CSS*/
+
+.home{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  padding: 10px;
+}
+
+.app{
+  width: 100vw;
+  height: 100vw;
+  background-image: url('public/bkg.avif');
+  margin:-8px;
+  margin-top: -20px;
+}
+
+.productbox{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #0151a8ab;
+  height: 265px;
+  width: 200px;
+  text-align: center;
+  padding: 5px;
+  padding-top: 10px;
+  border-radius: 0.5rem;
+  border-style: solid;
+  margin-top: 100px;
+  color: white;
+
+}
+.productbox:hover{
+  background-color:#001f41ab ;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.container{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.img{
+  width: 70px;
+}
+
+
+.about{
+  color:white;
+  width: 100vw;
+  height: 100%;
+  background-image: url('/public/bkg2.avif');
+  margin-top: -22px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(169, 0, 0);
+  padding: 10px;
+}
+
+.nav{
+  display: inline-block;
+  background-color: white;
+  width: 100vw;
+  
+
+  
+}
+
+.nav li{
+  display: inline;
+  list-style:none;
+  text-decoration: none;
+  margin-left: 20%;
+  margin-right: 40px;
+  width: 100vw;
+  
+  
+  
+  
+}
+
+#link {color: red;
+  text-decoration: none;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+margin-top: 5px;
+position: absolute;
+}
+
+#link:hover{
+  font-size: 19px;
+  transition: 0.2s;
+}
+
+/*INDEX.CSS*/
+
+.form{
+  font-family: 'Courier New', Courier, monospace;
+
+  height: 30px;
+  width: 50px;
+  display: flex;
+  position: absolute;
+  margin-left: 7vw;
+  top: 250px
+  
+}
+
+.submit{
+  border-radius: 0.5rem;
+  box-shadow: none;
+  border-style: none;
+  background-color: #09000eb1;
+  color: white;
+}
+
+.submit:hover{background-color: #dc97ffb1;
+cursor: pointer;}
+
+#input, #inputwo{
+  border-radius: 0.5rem;
+  border-style: none;
+  background-color: #000000dd;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+/*INDEX.HTML*/
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <script>
+      function getValue(){
+    let inputone = document.getElementById('input').value;
+    let inputtwo = document.getElementById('inputwo').value;
+
+    axios.post('https://reqres.in/api/login',{
+        email: inputone,
+        password: inputtwo 
+    }).then(response => {
+        console.log(response)
+        alert ('success')
+    })
+    .catch(error =>{
+        console.error('ERROR')
+        alert ('wrong username or password')
+    })
+}
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <div>
+    <div id="root"></div>
+    <div class="form">
+    <script type="module" src="/src/main.jsx"></script>
+    <input type='text' placeholder="Email" id="input"></input>
+    <input type='text' placeholder="Password" id="inputwo"></input>
+    <button type='submit' class="submit" onClick='getValue()'>Login</button>
+  </div>
+  
+  <body>
+   
+  </div>
+  </body>
+</html>
+
 
